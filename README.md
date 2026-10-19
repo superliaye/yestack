@@ -25,7 +25,10 @@ codex plugin marketplace add superliaye/yestack
 codex plugin add ye@yestack
 ```
 
-Run `/ye:ping` (Claude Code) or `$ping` (Codex) to confirm the install.
+## Skills
+
+- [principle-clarify-human-intent](plugins/ye/skills/principle-clarify-human-intent/SKILL.md): Understand the human's intent and judge whether it is clear enough for the next step. Use directly or as a dependency of another skill.
+- [principle-unslop-for-human](plugins/ye/skills/principle-unslop-for-human/SKILL.md): Cut AI tells from writing. The body is copied verbatim from Lauren Tan's [pstack `unslop`](https://github.com/cursor/plugins/blob/d457567332aa6989e753ea289f30ea2bfbc80bc0/pstack/skills/unslop/SKILL.md), under the included [MIT license](plugins/ye/skills/principle-unslop-for-human/LICENSE).
 
 ## Update
 
