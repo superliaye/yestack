@@ -1,0 +1,10 @@
+{
+  "name": "ye",
+  "description": "Leon Ye's personal engineering skills.",
+  "author": {
+    "name": "Leon Ye"
+  },
+  "homepage": "https://github.com/superliaye/yestack",
+  "repository": "https://github.com/superliaye/yestack",
+  "license": "MIT"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "yestack",
+  "description": "Leon Ye's personal agent skills, packaged as the ye plugin.",
+  "owner": {
+    "name": "superliaye"
+  },
+  "plugins": [
+    {
+      "name": "ye",
+      "source": "./plugins/ye",
+      "description": "Leon Ye's personal engineering skills."
+    }
+  ]
+}

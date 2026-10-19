@@ -1,0 +1,20 @@
+{
+  "name": "yestack",
+  "interface": {
+    "displayName": "yestack"
+  },
+  "plugins": [
+    {
+      "name": "ye",
+      "source": {
+        "source": "local",
+        "path": "./plugins/ye"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
