@@ -1,6 +1,7 @@
 ---
 name: principle-unslop-for-human
 description: Cut AI tells from any writing.
+disable-model-invocation: true
 ---
 
 # Unslop

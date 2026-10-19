@@ -1,6 +1,7 @@
 ---
 name: principle-clarify-human-intent
 description: Clarifies human intent before committing to a direction. Use when interpreting the human's own input or when a calling skill needs to establish intent.
+disable-model-invocation: true
 ---
 
 # Clarify human intent

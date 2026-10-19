@@ -1,6 +1,7 @@
 // Structural checks that `claude plugin validate` does not cover: the Claude and
 // Codex marketplaces must list the same plugins, and each plugin's two manifests
-// and skill folders must agree on names.
+// and skill folders must agree on names. Principle skills load only through an
+// explicit reference, so they must disable model invocation.
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 
@@ -39,6 +40,9 @@ for (const name of new Set([...claudePlugins.keys(), ...codexPlugins.keys()])) {
       errors.push(`${name}/skills/${skill}: frontmatter name must equal folder name`);
     }
     if (!front.match(/^description:\s*\S/m)) errors.push(`${name}/skills/${skill}: missing description`);
+    if (skill.startsWith("principle-") && !front.match(/^disable-model-invocation:\s*true\s*$/m)) {
+      errors.push(`${name}/skills/${skill}: principle skills must set disable-model-invocation: true`);
+    }
   }
 }
 

@@ -29,6 +29,8 @@ codex plugin add ye@yestack
 
 - [principle-clarify-human-intent](plugins/ye/skills/principle-clarify-human-intent/SKILL.md): Understand the human's intent and judge whether it is clear enough for the next step. Use directly or as a dependency of another skill.
 - [principle-unslop-for-human](plugins/ye/skills/principle-unslop-for-human/SKILL.md): Cut AI tells from writing. The body is copied verbatim from Lauren Tan's [pstack `unslop`](https://github.com/cursor/plugins/blob/d457567332aa6989e753ea289f30ea2bfbc80bc0/pstack/skills/unslop/SKILL.md), under the included [MIT license](plugins/ye/skills/principle-unslop-for-human/LICENSE).
+- [principle-subtract-before-you-add](plugins/ye/skills/principle-subtract-before-you-add/SKILL.md): Remove dead weight first, then build on the simpler base. The body is copied verbatim from Lauren Tan's [pstack `principle-subtract-before-you-add`](https://github.com/cursor/plugins/blob/d457567332aa6989e753ea289f30ea2bfbc80bc0/pstack/skills/principle-subtract-before-you-add/SKILL.md), under the included [MIT license](plugins/ye/skills/principle-subtract-before-you-add/LICENSE).
+- [principle-laziness-protocol](plugins/ye/skills/principle-laziness-protocol/SKILL.md): Bias toward deletion and the smallest change that solves the problem. The body is copied verbatim from Lauren Tan's [pstack `principle-laziness-protocol`](https://github.com/cursor/plugins/blob/d457567332aa6989e753ea289f30ea2bfbc80bc0/pstack/skills/principle-laziness-protocol/SKILL.md), under the included [MIT license](plugins/ye/skills/principle-laziness-protocol/LICENSE).
 
 ## Update
 
