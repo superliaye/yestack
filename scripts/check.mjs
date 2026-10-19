@@ -1,13 +1,17 @@
 // Structural checks that `claude plugin validate` does not cover: the Claude and
 // Codex marketplaces must list the same plugins, and each plugin's two manifests
 // and skill folders must agree on names. Principle skills load only through an
-// explicit reference, so they must disable model invocation.
+// explicit reference, so they must disable model invocation. Skill text must not
+// name a harness or model outside the tier map.
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 
 const root = new URL("..", import.meta.url).pathname;
 const errors = [];
 const readJson = (rel) => JSON.parse(readFileSync(join(root, rel), "utf8"));
+// Skill text stays harness-neutral. Only the tier map names harnesses and models.
+const modelTierMap = join("principle-choose-model-tier", "SKILL.md");
+const harnessTerms = /\b(cursor|grok|claude|codex|opus|sonnet|haiku|fable|gemini|gpt)\b|\.mdc\b/i;
 
 const claudeMarket = readJson(".claude-plugin/marketplace.json");
 const codexMarket = readJson(".agents/plugins/marketplace.json");
@@ -43,6 +47,11 @@ for (const name of new Set([...claudePlugins.keys(), ...codexPlugins.keys()])) {
     if (skill.startsWith("principle-") && !front.match(/^disable-model-invocation:\s*true\s*$/m)) {
       errors.push(`${name}/skills/${skill}: principle skills must set disable-model-invocation: true`);
     }
+  }
+  for (const rel of existsSync(skillsDir) ? readdirSync(skillsDir, { recursive: true }) : []) {
+    if (!rel.endsWith(".md") || rel === modelTierMap) continue;
+    const term = readFileSync(join(skillsDir, rel), "utf8").match(harnessTerms)?.[0];
+    if (term) errors.push(`${name}/skills/${rel}: names "${term}"; describe the action or a model tier instead`);
   }
 }
 
