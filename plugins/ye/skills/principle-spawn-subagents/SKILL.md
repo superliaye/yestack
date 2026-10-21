@@ -45,7 +45,7 @@ Start from the tier the skill names, or from the definitions above when it names
 
 Keep every subagent in the session model's family unless the work compares outputs for the same input, as in a second opinion, a review panel, or a bakeoff. For those, give at least one participant the same brief on another family's model at the same tier. Agreement across families is strong evidence. Agreement within one family is weaker, because its models share blind spots.
 
-Some harnesses reach another family only through a saved agent definition, and some accept the model but never deliver the brief. Check that each reply answers its brief. If no other family works, use a nearby tier whose cell names a different model, and say that the comparison stayed in one family. If every cell names the same model, say that no model diversity was available.
+Some harnesses reach another family only through a saved agent definition, and some accept the model but never deliver the brief. If the harness's own subagents can't reach another family, run the other family's agent CLI non-interactively from the shell, with the brief as its prompt. Apply the same access and workspace rules to it, and say in the brief whether it may write. Check that each reply answers its brief. If no other family works, use a nearby tier whose cell names a different model, and say that the comparison stayed in one family. If every cell names the same model, say that no model diversity was available.
 
 ## Tier map
 
@@ -60,7 +60,7 @@ Each cell is a model and its effort level:
 | `budgeted` | Sonnet 5.5 · low | GPT-6.1-Sol · low | Grok 4.7 · low |
 | `no-brainer` | Haiku 5.5 · low | GPT-6-Luna · low | Grok 4.7 · low |
 
-Use the column for the family chosen above. Pass the model and the effort through your harness's subagent options. If the harness rejects the model or effort of a tier you adjusted, use the named tier unadjusted instead of trying another tier. If the harness cannot set the model or effort at all, or the cell is empty, keep the session's value. Say so either way. A model the human names overrides the tier.
+Use the column for the family chosen above. Pass the model and the effort through the options of whatever runs the subagent, the harness or an agent CLI. If the harness rejects the model or effort of a tier you adjusted, use the named tier unadjusted instead of trying another tier. If the harness cannot set the model or effort at all, or the cell is empty, keep the session's value. Say so either way. A model the human names overrides the tier.
 
 ## After a subagent returns
 
