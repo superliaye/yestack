@@ -10,7 +10,7 @@ Investigate the motivation and intent behind code. The companion `how` skill ans
 
 Investigators use the `trusty` tier and the synthesizer uses the `lazy-genius` tier. Read `../principle-spawn-subagents/SKILL.md` and apply it to every spawn.
 
-Every spawn needs the session's MCP tools. **Do not use a read-only mode that removes them.** That disables the MCP-backed investigators and the synthesizer's citation spot-checks. Investigators still shouldn't write anything.
+Every spawn needs the session's MCP tools. **Do not use a read-only mode that removes them.**
 
 ## Operating Posture
 
@@ -46,7 +46,7 @@ Map each available MCP to one evidence category:
 
 Source control is always available through git and `gh`. For the other six, classify using the MCP name, server instructions, tool names, and resource descriptors. If an MCP could fit more than one category, choose the one matching its primary evidence. Record ambiguous cases in the coverage map.
 
-Spawn one investigator per category that has a matching MCP, all in a single message so they run concurrently. Each investigator owns every MCP in its category and searches each one in turn.
+Spawn one investigator per category that has a matching MCP. Each investigator owns every MCP in its category and searches each one in turn.
 
 Each investigator's prompt is `references/investigator-prompt.md` filled in, plus:
 - the category playbook `references/sources/<source>.md` for the selected MCP, adapted from the examples in `references/source-playbook.md`
