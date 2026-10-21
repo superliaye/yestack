@@ -2,7 +2,9 @@
 // Codex marketplaces must list the same plugins, and each plugin's two manifests
 // and skill folders must agree on names. Principle skills load only through an
 // explicit reference, so they must disable model invocation. Skill text must not
-// name a harness or model outside the tier map.
+// name a harness or model outside the tier map. A skill that tells the agent to
+// load another skill must give its `../<name>/SKILL.md` path, and that path must
+// exist: hidden skills cannot be loaded by name, and agents often skip a bare name.
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 
@@ -13,6 +15,9 @@ const readJson = (rel) => JSON.parse(readFileSync(join(root, rel), "utf8"));
 // harnesses and models.
 const modelTierMap = join("principle-spawn-subagents", "SKILL.md");
 const harnessTerms = /\b(cursor|grok|claude|codex|opus|sonnet|haiku|fable|gemini|gpt)\b|\.mdc\b/i;
+// A sentence with one of these verbs and a `name` or **name** skill mention asks
+// the agent to load that skill.
+const loadVerbs = /\b(read|apply|run|follow|see|use|invoke|load)\b/i;
 
 const claudeMarket = readJson(".claude-plugin/marketplace.json");
 const codexMarket = readJson(".agents/plugins/marketplace.json");
@@ -49,10 +54,24 @@ for (const name of new Set([...claudePlugins.keys(), ...codexPlugins.keys()])) {
       errors.push(`${name}/skills/${skill}: principle skills must set disable-model-invocation: true`);
     }
   }
+  const skills = new Set(existsSync(skillsDir) ? readdirSync(skillsDir) : []);
   for (const rel of existsSync(skillsDir) ? readdirSync(skillsDir, { recursive: true }) : []) {
-    if (!rel.endsWith(".md") || rel === modelTierMap) continue;
-    const term = readFileSync(join(skillsDir, rel), "utf8").match(harnessTerms)?.[0];
+    if (!rel.endsWith(".md")) continue;
+    const text = readFileSync(join(skillsDir, rel), "utf8");
+    const term = rel === modelTierMap ? undefined : text.match(harnessTerms)?.[0];
     if (term) errors.push(`${name}/skills/${rel}: names "${term}"; describe the action or a model tier instead`);
+    const body = text.replace(/^---\n[\s\S]*?\n---\n/, "");
+    for (const [, target] of body.matchAll(/\.\.\/([a-z0-9-]+)\/SKILL\.md/g)) {
+      if (!skills.has(target)) errors.push(`${name}/skills/${rel}: ../${target}/SKILL.md does not exist`);
+    }
+    const self = rel.split(/[\\/]/)[0];
+    for (const sentence of body.split(/(?<=[.!?])\s+|\n/).filter((s) => loadVerbs.test(s))) {
+      for (const [, target] of sentence.matchAll(/(?:`|\*\*)([a-z0-9-]+)(?:`|\*\*)/g)) {
+        if (target !== self && skills.has(target) && !sentence.includes(`../${target}/SKILL.md`)) {
+          errors.push(`${name}/skills/${rel}: names the ${target} skill; give its path, ../${target}/SKILL.md`);
+        }
+      }
+    }
   }
 }
 
