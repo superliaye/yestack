@@ -18,6 +18,12 @@ Give each subagent the least access that still includes every tool its work need
 
 Spawn independent subagents in one batch so they run in parallel. Run every subagent in the background.
 
+## Workspaces
+
+Run subagents in the current workspace by default. Give a subagent its own workspace, such as a worktree or a remote sandbox, only when the work cannot finish safely in the shared one: two subagents would write the same files, or a subagent needs a different branch or commit checked out. Workers that write to separate files or output folders share the workspace.
+
+Remove a separate workspace as soon as its result is recorded, unless a later step needs it, such as a branch to push or a process still running. Report the path of each workspace you keep.
+
 ## Model tier
 
 Skills name a tier, not a model. Tiers run from strongest to weakest:
