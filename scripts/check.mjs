@@ -9,8 +9,9 @@ import { join } from "node:path";
 const root = new URL("..", import.meta.url).pathname;
 const errors = [];
 const readJson = (rel) => JSON.parse(readFileSync(join(root, rel), "utf8"));
-// Skill text stays harness-neutral. Only the tier map names harnesses and models.
-const modelTierMap = join("principle-choose-model-tier", "SKILL.md");
+// Skill text stays harness-neutral. Only the file that holds the tier map names
+// harnesses and models.
+const modelTierMap = join("principle-spawn-subagents", "SKILL.md");
 const harnessTerms = /\b(cursor|grok|claude|codex|opus|sonnet|haiku|fable|gemini|gpt)\b|\.mdc\b/i;
 
 const claudeMarket = readJson(".claude-plugin/marketplace.json");

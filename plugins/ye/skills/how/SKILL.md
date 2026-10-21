@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 Explore the codebase to answer "how does X work?" questions. Produce architectural explanations at the level of a senior engineer onboarding onto a subsystem, enough to build a working mental model, not so much that it reads like annotated source code.
 
-Every spawn is a read-only subagent. Tell it not to edit files. Explorers use the `routine` tier and the explainer uses the `trusty` tier. Read `../principle-choose-model-tier/SKILL.md` and apply it to pick each model.
+Every spawn is a read-only subagent. Tell it not to edit files. Explorers use the `routine` tier and the explainer uses the `trusty` tier. Read `../principle-spawn-subagents/SKILL.md` and apply it to every spawn.
 
 ## 1. Assess complexity
 
