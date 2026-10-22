@@ -1,0 +1,11 @@
+{
+  "name": "ye-flow-tools",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "test": "node --test orch/*.test.ts watch-pr/*.test.ts check-plan.test.ts"
+  }
+}
