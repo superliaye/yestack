@@ -124,3 +124,4 @@ Before you push:
 node scripts/check.mjs
 claude plugin validate . && claude plugin validate plugins/ye
 ```
+- [make-a-video](plugins/ye/skills/make-a-video/SKILL.md): Make a short film about a product from a brief of what to present. It researches first, asks only what research cannot settle, shows a treatment and style frames, then directs and produces the film with full creative freedom.
