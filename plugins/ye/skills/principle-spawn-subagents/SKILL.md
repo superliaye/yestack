@@ -49,12 +49,12 @@ Some harnesses reach another family only through a saved agent definition, and s
 
 ## Tier map
 
-Each cell is a model and its effort level:
+Each cell is a model and its effort level. If the harness cannot use the first model in a cell, use the one after "else":
 
 | Tier | Claude | GPT | Grok |
 |---|---|---|---|
-| `tireless-genius` | Opus 5.5 · max | GPT-6-Astra · max | Grok 4.7 · xhigh |
-| `lazy-genius` | Opus 5.5 · high | GPT-6-Astra · medium | Grok 4.7 · high |
+| `tireless-genius` | Fable 5.1 · max, else Opus 5.5 · max | GPT-6-Astra · max | Grok 4.7 · xhigh |
+| `lazy-genius` | Fable 5.1 · medium, else Opus 5.5 · high | GPT-6-Astra · medium | Grok 4.7 · high |
 | `trusty` | Opus 5.5 · medium | GPT-6.1-Sol · high | Grok 4.7 · medium |
 | `routine` | Sonnet 5.5 · medium | GPT-6.1-Sol · medium | Grok 4.7 · medium |
 | `budgeted` | Sonnet 5.5 · low | GPT-6.1-Sol · low | Grok 4.7 · low |
